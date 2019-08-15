@@ -26,6 +26,7 @@
                     <th>Evaluasi Bacaan / Hafalan</th>
                     <th>Arahan Bimbingan</th>
                     <th>Tema dan Kesimpulan Pembelajaran</th>
+                    <th>Pemberitahuan</th>
                     <th>Pembahasan Masalah</th>
                     <th>Rencana dan Evaluasi Program</th>
                     <th>Sumbangan Pendidikan</th>

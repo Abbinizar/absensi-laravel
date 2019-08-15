@@ -25,6 +25,7 @@ Route::get('/jurnal', function () {
 Route::get('/kegiatan', function () {
     return view('kegiatan');
 });
+Route::get('/beranda', ['as' => 'beranda', 'uses' => 'BeritaController@index']);
 Route::get('/data-kegiatan', ['as' => 'data_kegiatan', 'uses' => 'KegiatanController@index']);
 Route::get('/data-jurnal', ['as' => 'data_jurnal', 'uses' => 'JurnalController@index']);
 Route::post('/tambahjurnal', ['as'=>'data_jurnal', 'uses' => 'JurnalController@create']);
@@ -32,6 +33,6 @@ Route::post('/tambahkegiatan', ['as'=>'data_jurnal', 'uses' => 'KegiatanControll
 // Route::get('/login', function () {
 //     return view('login');
 // });
-Route::get('/beranda', function () {
-    return view('beranda');
-});
+// Route::get('/beranda', function () {
+//     return view('beranda');
+// });
