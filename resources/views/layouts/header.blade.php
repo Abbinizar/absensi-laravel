@@ -77,44 +77,55 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form" aria-expanded="false" aria-controls="form">
+            <a class="nav-link" href="{{url('berita')}}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Berita</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('kegiatan')}}">
               <i class="ti-layout-list-post menu-icon"></i>
-              <span class="menu-title">Formulir</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Evaluasi Kegiatan</span>
             </a>
-            <div class="collapse" id="form">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('kegiatan')}}">Evaluasi Kegiatan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('jurnal')}}">Jurnal Belajar</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <a class="nav-link" href="{{url('jurnal')}}">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Jurnal Belajar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('data-kegiatan')}}">
               <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Tabel data</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Data Evaluasi Kegiatan</span>
             </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('data-kegiatan')}}">Data Evaluasi Kegiatan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('data-jurnal')}}">Data Jurnal Belajar</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
-              <i class="ti-user menu-icon"></i>
-              <span class="menu-title">Akun</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" href="{{url('data-jurnal')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Jurnal Belajar</span>
             </a>
-            <div class="collapse" id="user">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('daftar-akun')}}">Daftar Akun</a></li>
-                <!-- <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html">Data Akun</a></li> -->
-              </ul>
-            </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('data-berita')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Berita</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('daftar-akun')}}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Daftar Akun</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('data-akun')}}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Data Akun</span>
+            </a>
+          </li>
+
+          
         </ul>
       </nav>
       <!-- partial -->

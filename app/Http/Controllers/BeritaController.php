@@ -15,7 +15,7 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::all()->toArray();
-        return view('beranda', compact('berita'));
+        return view('berita', compact('berita'));
     }
 
     /**
@@ -29,6 +29,11 @@ class BeritaController extends Controller
             "judul" => $request->judul,
             "isi" => $request->isi
         ]);
+        if ($data) {
+            return back()->with('success','Data Berhasil Ditambahkan !!!');
+        } else {
+            return back()->with('error','Data Gagal Ditambahkan !!!');
+        }
     }
 
     /**
@@ -50,7 +55,8 @@ class BeritaController extends Controller
      */
     public function show(Berita $berita)
     {
-        //
+        $berita = Berita::all()->toArray();
+        return view('data_berita', compact('berita'));
     }
 
     /**
@@ -71,9 +77,17 @@ class BeritaController extends Controller
      * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request)
     {
-        //
+        $data = Berita::where('id', '=', $request->id)->update([
+            "judul" => $request->judul,
+            "isi" => $request->isi
+        ]);
+        if ($data) {
+            return back()->with('success','Data Berhasil Diubah !!!');
+        } else {
+            return back()->with('error','Data Gagal Diubah !!!');
+        }
     }
 
     /**
@@ -82,8 +96,13 @@ class BeritaController extends Controller
      * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Berita $berita)
+    public function destroy($id)
     {
-        //
+        $data = Berita::where('id', '=', $id)->delete();
+        if ($data) {
+            return back()->with('success','Data Berhasil Dihapus !!!');
+        } else {
+            return back()->with('error','Data Gagal Dihapus !!!');
+        }
     }
 }

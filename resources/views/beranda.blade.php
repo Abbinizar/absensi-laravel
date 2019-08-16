@@ -7,22 +7,49 @@
       <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Selemat datang di web absensi</h4>
+            <h4 class="card-title">Selamat datang di web absensi</h4>
           </div>
         </div>
+      </div>
+      <div class="col-sm-12">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block" style="margin: 10px;">
+          <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block" style="margin: 10px;">
+          <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if ($message = Session::get('warning'))
+        <div class="alert alert-warning alert-block" style="margin: 10px;">
+          <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if ($message = Session::get('info'))
+        <div class="alert alert-info alert-block" style="margin: 10px;">
+          <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+        </div>
+        @endif
       </div>
       <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Info Pemberitahuan</h4>
-            <form class="forms-sample">
+            <form class="forms-sample" action="{{url('tambahberita')}}" method="post">
+              {{csrf_field()}}
               <div class="form-group">
                 <label for="judul">Judul</label>
                 <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul">
               </div>
               <div class="form-group">
                 <label for="isi">Isi</label>
-                <textarea class="form-control" id="isi" name="isi" rows="4"></textarea>
+                <textarea class="form-control" id="isi" name="isi" rows="4" ></textarea>
               </div>
               <button type="submit" class="btn btn-primary mr-2">Kirim</button>
               <button class="btn btn-light">Batal</button>
@@ -30,23 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Info Pemberitahuan</h4>
-            <form class="forms-sample">
-              @foreach($berita as $row)
-              <div class="form-group">
-                <h4>{{$row['judul']}}</h4>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" id="isi" name="isi" rows="4">{{$row['isi']}}</textarea>
-              </div>
-              @endforeach
-            </form>
-          </div>
-        </div>
-      </div>
+
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->

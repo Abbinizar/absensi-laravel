@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jurnal;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JurnalController extends Controller
 {
@@ -57,9 +58,9 @@ class JurnalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function export()
     {
-        //
+        return Excel::download(new JurnalExport(), 'jurnal.xlsx');
     }
 
     /**
@@ -68,9 +69,9 @@ class JurnalController extends Controller
      * @param  \App\Jurnal  $jurnal
      * @return \Illuminate\Http\Response
      */
-    public function show(Jurnal $jurnal)
+    public function exportview()
     {
-        //
+        return Excel::download(new JurnalExport(), 'jurnal.xlsx');
     }
 
     /**
@@ -79,18 +80,7 @@ class JurnalController extends Controller
      * @param  \App\Jurnal  $jurnal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jurnal $jurnal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jurnal  $jurnal
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Jurnal $jurnal)
     {
         //
