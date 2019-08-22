@@ -8,23 +8,50 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Daftar Akun</h4>
-            <form class="forms-sample">
+            <form class="forms-sample" method="post" action="{{url('tambahUser')}}">
+              @csrf
               <div class="form-group">
                 <label for="exampleInputUsername1">Username</label>
-                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name="name">
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
               <div class="form-group">
                 <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" name="password_confirmation">
               </div>
+
+              <div class="form-group">
+                <label for="exampleInputConfirmPassword1">Jabatan</label>
+                <SELECT id="jabatan" class="form-control" name="jabatan" required>
+                  <option selected="true" disabled=""> -- select one -- </option>
+                  <option value="2">pembina</option>
+                  <option value="3">member</option>
+                </SELECT>
+              </div>
+
               <button type="submit" class="btn btn-primary mr-2">Simpan</button>
               <button class="btn btn-light">Batal</button>
             </form>

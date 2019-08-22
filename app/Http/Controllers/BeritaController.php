@@ -12,9 +12,14 @@ class BeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $berita = Berita::all()->toArray();
+        $berita = Berita::where('tgl_publish', '!=', '0000-00-00 00:00:00')->orderBy('id', 'desc')->get();
         return view('berita', compact('berita'));
     }
 
@@ -55,7 +60,7 @@ class BeritaController extends Controller
      */
     public function show(Berita $berita)
     {
-        $berita = Berita::all()->toArray();
+        $berita = Berita::orderBy('id', 'desc')->get();
         return view('data_berita', compact('berita'));
     }
 
@@ -65,9 +70,18 @@ class BeritaController extends Controller
      * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berita $berita)
+    public function edit(Request $request)
     {
-        //
+        $data = Berita::where('id', '=', $request->id)->update([
+            "judul"         => $request->judul,
+            "isi"           => $request->isi,
+            "tgl_publish"   => $request->tgl_publish
+        ]);
+        if ($data) {
+            return back()->with('success','Data Berhasil Diubah !!!');
+        } else {
+            return back()->with('error','Data Gagal Diubah !!!');
+        }
     }
 
     /**
@@ -99,6 +113,19 @@ class BeritaController extends Controller
     public function destroy($id)
     {
         $data = Berita::where('id', '=', $id)->delete();
+        if ($data) {
+            return back()->with('success','Data Berhasil Dihapus !!!');
+        } else {
+            return back()->with('error','Data Gagal Dihapus !!!');
+        }
+    }
+
+    public function publish($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $data = Berita::where('id', '=', $id)->update([
+            'tgl_publish' => date('Y:m:d H:i:s')
+        ]);
         if ($data) {
             return back()->with('success','Data Berhasil Dihapus !!!');
         } else {

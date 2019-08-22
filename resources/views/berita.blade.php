@@ -18,6 +18,7 @@
             <form class="forms-sample">
               <div class="form-group">
                 <h4>{{$row['judul']}}</h4>
+                <h5>Tanggal Publish : {!! substr($row['tgl_publish'], 0, 10) !!}</h5>
               </div>
               <div class="form-group">
                 <textarea class="form-control" id="isi" name="isi" rows="10" disabled>{{$row['isi']}}</textarea>

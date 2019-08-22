@@ -14,7 +14,6 @@
                     <th>No</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Level</th>
                   </tr>
                 </thead>
@@ -22,10 +21,17 @@
                   @foreach($user as $row)
                   <tr>
                     <td>{{$row['id']}}</td>
-                    <td>{{$row['username']}}</td>
+                    <td>{{$row['name']}}</td>
                     <td>{{$row['email']}}</td>
-                    <td>{{$row['password']}}</td>
-                    <td>{{$row['level']}}</td>
+                    <td>
+                      @if($row['jabatan'] == 1)
+                      Admin
+                      @elseif($row['jabatan'] == 2)
+                      Pembina
+                      @else
+                      Member
+                      @endif
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

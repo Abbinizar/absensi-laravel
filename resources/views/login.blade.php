@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>RoyalUI Admin</title>
+  <title>Website Absensin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{url('assets/vendors/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" href="{{url('assets/vendors/base/vendor.bundle.base.css')}}">
@@ -26,15 +26,20 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <h3 class="font-weight-light" align="center">Absensi</h3>
-              <form class="pt-3">
+              <form class="pt-3" method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{url('beranda')}}">Masuk</a>
+                  {{-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >Masuk</a> --}}
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                    {{ __('Login') }}
+                  </button>
+
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -57,15 +62,15 @@
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{url('assets/vendors/base/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="{{url('assets/js/off-canvas.js')}}"></script>
-    <script src="{{url('assets/js/hoverable-collapse.js')}}"></script>
-    <script src="{{url('assets/js/template.js')}}"></script>
-    <script src="{{url('assets/js/todolist.js')}}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{{url('assets/js/file-upload.js')}}"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="{{url('assets/js/off-canvas.js')}}"></script>
+  <script src="{{url('assets/js/hoverable-collapse.js')}}"></script>
+  <script src="{{url('assets/js/template.js')}}"></script>
+  <script src="{{url('assets/js/todolist.js')}}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{url('assets/js/file-upload.js')}}"></script>
   <!-- endinject -->
 </body>
 

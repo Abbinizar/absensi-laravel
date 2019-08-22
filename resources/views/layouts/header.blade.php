@@ -45,17 +45,20 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{url('assets/images/faces/face28.jpg')}}" alt="profile"/>
+              <img src="{{url('assets/images/faces/admin.jpg')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <!-- <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Pengaturan
               </a> -->
-              <a class="dropdown-item" href="{{url('/')}}">
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="ti-power-off text-primary"></i>
                 Keluar
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
             </div>
           </li>
         </ul>
@@ -70,15 +73,22 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          @if(Auth::user()->jabatan == 1)
           <li class="nav-item">
-            <a class="nav-link" href="{{url('beranda')}}">
+            <a class="nav-link" href="{{url('home')}}">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">Beranda</span>
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{url('pemberitahuan')}}">
+              <i class="ti-write menu-icon"></i>
+              <span class="menu-title">Pemberitahuan</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{url('berita')}}">
-              <i class="ti-shield menu-icon"></i>
+              <i class="ti-write menu-icon"></i>
               <span class="menu-title">Berita</span>
             </a>
           </li>
@@ -125,7 +135,76 @@
             </a>
           </li>
 
-          
+          @elseif(Auth::user()->jabatan == 2)
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('home')}}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Beranda</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('berita')}}">
+              <i class="ti-write menu-icon"></i>
+              <span class="menu-title">Berita</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('jurnal')}}">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Jurnal Belajar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('kegiatan')}}">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Evaluasi Kegiatan</span>
+            </a>
+          </li>
+<!--           <li class="nav-item">
+            <a class="nav-link" href="{{url('data-jurnal')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Jurnal Belajar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('data-berita')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Berita</span>
+            </a>
+          </li>
+        -->
+        @elseif(Auth::user()->jabatan == 3)
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('home')}}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Beranda</span>
+            </a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('berita')}}">
+            <i class="ti-write menu-icon"></i>
+            <span class="menu-title">Berita</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('kegiatan')}}">
+            <i class="ti-layout-list-post menu-icon"></i>
+            <span class="menu-title">Evaluasi Kegiatan</span>
+          </a>
+        </li>
+<!--           <li class="nav-item">
+            <a class="nav-link" href="{{url('data-kegiatan')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Evaluasi Kegiatan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('data-berita')}}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Data Berita</span>
+            </a>
+          </li> -->
+          @endif
         </ul>
       </nav>
       <!-- partial -->

@@ -7,7 +7,37 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Evaluasi Kegiatan Harian</h4>
-            <button type="submit" class="btn btn-primary mr-2">Generate to Excel</button>
+            <form method="post" action="{{url('exportDataKegiatan')}}">
+              @csrf
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tanggal Mulai</label>
+                    <div class="col-sm-9">
+                      <input type="date" name="tgl_start" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tanggal Akhir</label>
+                    <div class="col-sm-9">
+                      <input type="date" name="tgl_end" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group row">
+                    <div class="col-sm-9">
+                      <button type="submit" class="btn btn-primary mr-2">Generate to Excel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary mr-2">Generate to Excel</button>
+              <input type="date" name="tgl_start" placeholder="Tanggal Start">
+              <input type="date" name="tgl_end" placeholder="Tanggal End"> -->
+            </form>
             <div class="table-responsive pt-3">
               <table class="table table-bordered">
                 <thead>
@@ -62,7 +92,7 @@
                         '{{$row['tilawah']}}',
                         '{{$row['puasa_sunnah']}}',
                         '{{$row['sholat_malam']}}');">Edit</button>
-                        <a href="{{url('hapuskegiatan')}}/{{$row['id']}}"><button type="button" class="btn btn-danger btn-circle btn-sm">Hapus</button></a>
+                        <button type="button" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#modalHapus">Hapus</button>
                       </td>
                     </tr>
                     @endforeach
@@ -84,8 +114,9 @@
               Dilaporkan tiap pekan oleh Member
             </p>
             
-            <form class="forms-sample" action="{{url('tambahkegiatan')}}" method="post">
+            <form class="forms-sample" action="{{url('ubahKegiatan')}}" method="post">
               {{csrf_field()}}
+              <input type="text" name="id" hidden="true" readonly="" id="id">
               <div class="form-group">
                 <label for="bulan">Bulan</label>
                 <input type="date" class="form-control" id="bulan" name="bulan" placeholder="Bulan" required>
@@ -93,11 +124,11 @@
               <div class="form-group">
                 <label for="pekan">Pekan</label>
                 <select class="form-control" id="pekan" name="pekan" required>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option id="1" value="1">1</option>
+                  <option id="2" value="2">2</option>
+                  <option id="3" value="3">3</option>
+                  <option id="4" value="4">4</option>
+                  <option id="5" value="5">5</option>
                 </select>
               </div>
               <div class="form-group">
@@ -107,8 +138,8 @@
               <div class="form-group">
                 <label for="jeniskelamin">Jenis Kelamin</label>
                 <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                  <option>Laki-Laki</option>
-                  <option>Perempuan</option>
+                  <option value="Laki-Laki">Laki-Laki</option>
+                  <option value="Perempuan">Perempuan</option>
                 </select>
               </div>
               <div class="form-group">
@@ -122,15 +153,15 @@
               <div class="form-group">
                 <label for="kehadiran">Kehadiran Kegiatan Belajar</label>
                 <select class="form-control" id="kehadiran" name="kehadiran" required>
-                  <option>Ya</option>
-                  <option>Tidak</option>
+                  <option value="Ya">Ya</option>
+                  <option value="Tidak">Tidak</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="sumbangan">Membayar Sumbangan Pendidikan</label>
                 <select class="form-control" id="pembayaran" name="pembayaran" required>
-                  <option>Ya</option>
-                  <option>Tidak</option>
+                  <option value="Ya">Ya</option>
+                  <option value="Tidak">Tidak</option>
                 </select>
               </div>
               <div class="form-group">
@@ -160,6 +191,23 @@
         </div>
       </div>
     </div>
+
+    <div id="modalHapus" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="card-body">
+            <h4 class="card-title">Hapus Kegiatan</h4>
+            <p class="card-description">
+              Apakah Anda Yakin Untuk Menghapus ??
+            </p>
+            
+            <a href="{{url('hapusKegiatan')}}/{{$row['id']}}"><button type="submit" class="btn btn-danger mr-2">Hapus</button></a>
+            <button class="btn btn-light">Batal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
     <footer class="footer">
@@ -168,6 +216,26 @@
       </div>
     </footer>
     <!-- partial -->
+
+    <script type="text/javascript">
+      function setIsi($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n){
+        $("#id").val($a);
+        $("#bulan").val($b.substring(0, 10));
+        $("#pekan").val($c);
+        $("#nama").val($d);
+        $("#jenis_kelamin").val($e);
+        $("#id_pembina").val($f);
+        $("#kode_grup").val($g);
+        $("#kehadiran").val($h);
+        $("#pembayaran").val($i);
+        $("#sholat_berjamaah").val($j);
+        $("#sholat_subuh").val($k);
+        $("#tilawah").val($l);
+        $("#puasa_sunnah").val($m);
+        $("#sholat_malam").val($n);
+      }
+    </script>
+
   </div>
   <!-- main-panel ends -->
 </div>
