@@ -20,7 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::post('/tambahUser', 'UserController@create');
+Route::post('/editUser', 'UserController@edit');
+Route::get('/hapusUser/{id}', 'UserController@destroy');
+
 Route::get('/data-akun', 'UserController@index');
 
 Route::get('/daftar-akun', function () {
